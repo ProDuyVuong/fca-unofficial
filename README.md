@@ -1,9 +1,6 @@
-This repo is a fork from main repo and will usually have new features bundled faster than main repo (and maybe bundle some bugs, too).
-
 # Unofficial Facebook Chat API
-<a href="https://www.npmjs.com/package/fca-unofficial"><img alt="npm version" src="https://img.shields.io/npm/v/fca-unofficial.svg?style=flat-square"></a>
-<img alt="version" src="https://img.shields.io/github/package-json/v/fca-unofficial/fca-unofficial?label=github&style=flat-square">
-<a href="https://www.npmjs.com/package/fca-unofficial"><img src="https://img.shields.io/npm/dm/fca-unofficial.svg?style=flat-square" alt="npm downloads"></a>
+<a href="https://www.npmjs.com/package/facebook-chat-api"><img alt="npm version" src="https://img.shields.io/npm/v/facebook-chat-api.svg?style=flat-square"></a>
+<a href="https://www.npmjs.com/package/facebook-chat-api"><img src="https://img.shields.io/npm/dm/facebook-chat-api.svg?style=flat-square" alt="npm downloads"></a>
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Facebook now has an official API for chat bots [here](https://developers.facebook.com/docs/messenger-platform).
@@ -17,16 +14,16 @@ See [below](#projects-using-this-api) for projects using this API.
 See the [full changelog](/CHANGELOG.md) for release details.
 
 ## Install
-If you just want to use fca-unofficial, you should use this command:
+If you just want to use facebook-chat-api, you should use this command:
 ```bash
-npm install fca-unofficial
+npm install facebook-chat-api
 ```
-It will download `fca-unofficial` from NPM repositories
+It will download facebook-chat-api from NPM repositories
 
 ### Bleeding edge
 If you want to use bleeding edge (directly from github) to test new features or submit bug report, this is the command for you:
 ```bash
-npm install fca-unofficial/fca-unofficial
+npm install Schmavery/facebook-chat-api
 ```
 
 ## Testing your bots
@@ -34,7 +31,7 @@ If you want to test your bots without creating another account on Facebook, you 
 
 ## Example Usage
 ```javascript
-const login = require("fca-unofficial");
+const login = require("facebook-chat-api");
 
 // Create simple echo bot
 login({email: "FB_EMAIL", password: "FB_PASSWORD"}, (err, api) => {
@@ -53,7 +50,43 @@ Result:
 
 ## Documentation
 
-You can see it [here](DOCS.md).
+* [`login`](DOCS.md#login)
+* [`api.addUserToGroup`](DOCS.md#addUserToGroup)
+* [`api.changeAdminStatus`](DOCS.md#changeAdminStatus)
+* [`api.changeArchivedStatus`](DOCS.md#changeArchivedStatus)
+* [`api.changeBlockedStatus`](DOCS.md#changeBlockedStatus)
+* [`api.changeGroupImage`](DOCS.md#changeGroupImage)
+* [`api.changeNickname`](DOCS.md#changeNickname)
+* [`api.changeThreadColor`](DOCS.md#changeThreadColor)
+* [`api.changeThreadEmoji`](DOCS.md#changeThreadEmoji)
+* [`api.createPoll`](DOCS.md#createPoll)
+* [`api.deleteMessage`](DOCS.md#deleteMessage)
+* [`api.deleteThread`](DOCS.md#deleteThread)
+* [`api.forwardAttachment`](DOCS.md#forwardAttachment)
+* [`api.getAppState`](DOCS.md#getAppState)
+* [`api.getCurrentUserID`](DOCS.md#getCurrentUserID)
+* [`api.getFriendsList`](DOCS.md#getFriendsList)
+* [`api.getThreadHistory`](DOCS.md#getThreadHistory)
+* [`api.getThreadInfo`](DOCS.md#getThreadInfo)
+* [`api.getThreadList`](DOCS.md#getThreadList)
+* [`api.getThreadPictures`](DOCS.md#getThreadPictures)
+* [`api.getUserID`](DOCS.md#getUserID)
+* [`api.getUserInfo`](DOCS.md#getUserInfo)
+* [`api.handleMessageRequest`](DOCS.md#handleMessageRequest)
+* [`api.listen`](DOCS.md#listen)
+* [`api.logout`](DOCS.md#logout)
+* [`api.markAsRead`](DOCS.md#markAsRead)
+* [`api.markAsReadAll`](DOCS.md#markAsReadAll)
+* [`api.muteThread`](DOCS.md#muteThread)
+* [`api.removeUserFromGroup`](DOCS.md#removeUserFromGroup)
+* [`api.resolvePhotoUrl`](DOCS.md#resolvePhotoUrl)
+* [`api.searchForThread`](DOCS.md#searchForThread)
+* [`api.sendMessage`](DOCS.md#sendMessage)
+* [`api.sendTypingIndicator`](DOCS.md#sendTypingIndicator)
+* [`api.setMessageReaction`](DOCS.md#setMessageReaction)
+* [`api.setOptions`](DOCS.md#setOptions)
+* [`api.setTitle`](DOCS.md#setTitle)
+* [`api.unsendMessage`](DOCS.md#unsendMessage)
 
 ## Main Functionality
 
@@ -73,7 +106,7 @@ __Tip__: to find your own ID, you can look inside the cookies. The `userID` is u
 
 __Example (Basic Message)__
 ```js
-const login = require("fca-unofficial");
+const login = require("facebook-chat-api");
 
 login({email: "FB_EMAIL", password: "FB_PASSWORD"}, (err, api) => {
     if(err) return console.error(err);
@@ -86,7 +119,7 @@ login({email: "FB_EMAIL", password: "FB_PASSWORD"}, (err, api) => {
 
 __Example (File upload)__
 ```js
-const login = require("fca-unofficial");
+const login = require("facebook-chat-api");
 
 login({email: "FB_EMAIL", password: "FB_PASSWORD"}, (err, api) => {
     if(err) return console.error(err);
@@ -110,7 +143,7 @@ __Example__
 
 ```js
 const fs = require("fs");
-const login = require("fca-unofficial");
+const login = require("facebook-chat-api");
 
 var credentials = {email: "FB_EMAIL", password: "FB_PASSWORD"};
 
@@ -120,8 +153,6 @@ login(credentials, (err, api) => {
     fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
 });
 ```
-
-Alternative: Use [c3c-fbstate](https://github.com/lequanglam/c3c-fbstate) to get fbstate.json (appstate.json)
 
 ------------------------------------
 
@@ -134,7 +165,7 @@ __Example__
 
 ```js
 const fs = require("fs");
-const login = require("fca-unofficial");
+const login = require("facebook-chat-api");
 
 // Simple echo bot. It will repeat everything that you say.
 // Will stop when you say '/stop'
@@ -143,7 +174,7 @@ login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, ap
 
     api.setOptions({listenEvents: true});
 
-    var stopListening = api.listenMqtt((err, event) => {
+    var stopListening = api.listen((err, event) => {
         if(err) return console.error(err);
 
         api.markAsRead(event.threadID, (err) => {
@@ -197,12 +228,7 @@ login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, ap
 > });
 > ```
 
-<a name="projects-using-this-api"></a>
-## Projects using this API:
-
-- [c3c](https://github.com/lequanglam/c3c) - A bot that can be customizable using plugins. Support Facebook & Discord.
-
-## Projects using this API (original repository, facebook-chat-api):
+## Projects using this API
 
 - [Messer](https://github.com/mjkaufer/Messer) - Command-line messaging for Facebook Messenger
 - [messen](https://github.com/tomquirk/messen) - Rapidly build Facebook Messenger apps in Node.js
@@ -218,6 +244,11 @@ login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, ap
 - [matrix-puppet-facebook](https://github.com/matrix-hacks/matrix-puppet-facebook) - A facebook bridge for [matrix](https://matrix.org)
 - [facebot](https://github.com/Weetbix/facebot) - A facebook bridge for Slack.
 - [Botium](https://github.com/codeforequity-at/botium-core) - The Selenium for Chatbots
+- [Messenger-CLI](https://github.com/AstroCB/Messenger-CLI) - A command-line interface for sending and receiving messages through Facebook Messenger.
+- [AssumeZero-Bot](https://github.com/AstroCB/AssumeZero-Bot) – A highly customizable Facebook Messenger bot for group chats.
+- [Miscord](https://github.com/Bjornskjald/miscord) - An easy-to-use Facebook bridge for Discord.
+- [chat-bridge](https://github.com/rexx0520/chat-bridge) - A Messenger, Telegram and IRC chat bridge.
+- [messenger-auto-reply](https://gitlab.com/theSander/messenger-auto-reply) - An auto-reply service for Messenger.
 - [Messenger-CLI](https://github.com/AstroCB/Messenger-CLI) - A command-line interface for sending and receiving messages through Facebook Messenger.
 - [AssumeZero-Bot](https://github.com/AstroCB/AssumeZero-Bot) – A highly customizable Facebook Messenger bot for group chats.
 - [Miscord](https://github.com/Bjornskjald/miscord) - An easy-to-use Facebook bridge for Discord.
